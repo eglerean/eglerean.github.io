@@ -25,13 +25,13 @@ const minimalDate = dateObj.toISOString().slice(0, 10); // "2025-06-12"
     href={getPath(id, filePath)}
     class="flex flex-row justify-between items-center w-full text-base font-medium"
   >
-    <time datetime={dateObj.toISOString()} class="text-gray-600 dark:text-gray-400 font-mono" style="width:100px;">
+    <time datetime={dateObj.toISOString()} class="text-gray-600 dark:text-gray-400 font-mono self-start basis-[100px] flex-shrink-0" style="width:100px;">
       {minimalDate}
     </time>
     {variant === "h2" ? (
-      <h2 {...headerProps} class="text-right text-base">{title}</h2>
+      <h2 {...headerProps} class="self-start text-right text-base">{title}</h2>
     ) : (
-      <h3 {...headerProps} class="text-right text-base">{title}</h3>
+      <h3 {...headerProps} class="self-start text-right text-base">{title}</h3>
     )}
   </a>
 </li>
