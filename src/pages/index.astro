@@ -96,12 +96,13 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
     <Hr />
 
-    
 
     {
       recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Journal <a
+        <section id="recent-posts" class="pt-8 pb-6">
+    <h1 class="text-2xl font-bold">6/10/2025: Journal posts and other materials are being added<h1>
+<br><br>      
+    <h2 class="text-2xl font-semibold tracking-wide">Journal <a
         target="_blank"
         href="/rss.xml"
         class="inline-block"
@@ -127,7 +128,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     {
       featuredPosts.length > 0 && (
         <>
-          <section id="featured" class="pt-12 pb-6">
+          <section id="featured" class="pt-8 pb-6">
             <h2 class="text-2xl font-semibold tracking-wide">Blog</h2>
             <ul>
               {featuredPosts.map(data => (
