@@ -1,0 +1,161 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Socials from "@/components/Socials.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import Card from "@/components/Card.astro";
+import Hr from "@/components/Hr.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import IconRss from "@/assets/icons/IconRss.svg";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import { SITE } from "@/config";
+import { SOCIALS } from "@/constants";
+
+const posts = await getCollection("blog");
+
+const sortedPosts = getSortedPosts(posts);
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
+const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+---
+
+<Layout>
+  <Header />
+  <main id="main-content" data-layout="index">
+    <section id="hero" class="pt-8 pb-6">
+        <style>
+.compact-text {
+  font-family:
+    "Arial Narrow",
+    "Helvetica Neue Condensed",
+    "Roboto Condensed",
+    "Inter Tight",
+    "Liberation Sans Narrow",
+    "DejaVu Sans Condensed",
+    "Noto Sans",
+    system-ui, -apple-system, "Segoe UI",
+    Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-stretch: condensed;          /* uses condensed width if available */
+  font-size: 12px;                  /* tiny but readable */
+  line-height: 1.15;                /* keep tight, but not squashed */
+  letter-spacing: 0;                /* set to -0.01em if you want extra tight */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 0px solid #ccc;
+  border-radius: 6px;           /* optional */
+  overflow: hidden;             /* keeps borders tidy on radius */
+  margin-bottom:20px;
+}
+.two-col > div {
+
+}
+.two-col > div + div {
+  border-left: 0px solid #ccc;  /* the middle divider */
+  padding-left:30px;
+  text-align:right;
+}
+
+/* Optional: stack on small screens */
+@media (max-width: 520px) {
+  .two-col { grid-template-columns: 1fr; padding:0px; }
+  .two-col > div + div { padding-left: 0px; border-left: 0; border-top: 1px solid #ccc; border-bottom:1px solid #ccc; text-align:left;margin-top:20px; padding-top:20px; padding-bottom:20px;margin-bottom:20px;}
+}
+
+</style>
+<div class="two-col">
+<div>      <i>Current positions:</i> 
+      <ul><li>Staff Scientist and Data Agent at Aalto University</li>
+      <li>SPE at European Data Protection Board</li> 
+      <li>Co-Founder at Finnish Reproducibility Network</li> 
+      <li>Workshop coordinator at CodeRefinery</li> 
+      <li>Lecturer at Tampere University</li></ul>
+</div>
+
+<div style=""><i>I usually write/teach/discuss about:</i><br> Research Ethics; Data Protection; Cybersecurity; Responsible AI; HPC; Neuroimaging; Statistics; Reproducibility; Open Science; Diversity and Inclusion</div></div></div>
+
+      <p>
+        I use this site to gather and share my teaching materials, code snippets, thoughts, and ideas. All content is licensed under Creative Commons Attribution 4.0 (CC BY 4.0). Read the <a class="underline decoration-dashed underline-offset-4 hover:text-accent" href="/about">About</a> page for more info.
+      </p>
+     
+      {
+        // only display if at least one social link is enabled
+        SOCIALS.length > 0 && (
+          <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
+            <Socials />
+          </div>
+        )
+      }
+    </section>
+
+    <Hr />
+
+    
+
+    {
+      recentPosts.length > 0 && (
+        <section id="recent-posts" class="pt-12 pb-6">
+          <h2 class="text-2xl font-semibold tracking-wide">Journal <a
+        target="_blank"
+        href="/rss.xml"
+        class="inline-block"
+        aria-label="rss feed"
+        title="RSS Feed"
+      ><IconRss
+          width={20}
+          height={20}
+          class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
+        />
+        <span class="sr-only">RSS Feed</span>
+      </a></h2>
+          <ul>
+            {recentPosts.map(
+              (data, index) =>
+                index < SITE.postPerIndex && <Card variant="h3" {...data} />
+            )}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      featuredPosts.length > 0 && (
+        <>
+          <section id="featured" class="pt-12 pb-6">
+            <h2 class="text-2xl font-semibold tracking-wide">Blog</h2>
+            <ul>
+              {featuredPosts.map(data => (
+                <Card variant="h3" {...data} />
+              ))}
+            </ul>
+          </section>
+          {recentPosts.length > 0 && <Hr />}
+        </>
+      )
+    }
+
+    <div class="my-8 text-center">
+      <LinkButton href="/posts/">
+        All Posts
+        <IconArrowRight class="inline-block rtl:-rotate-180" />
+      </LinkButton>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
+      ?.dataset?.layout;
+    if (indexLayout) {
+      sessionStorage.setItem("backUrl", "/");
+    }
+  });
+</script>

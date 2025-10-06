@@ -1,0 +1,38 @@
+---
+import { slugifyStr } from "@/utils/slugify";
+import type { CollectionEntry } from "astro:content";
+import { getPath } from "@/utils/getPath";
+import Datetime from "./Datetime.astro";
+
+export interface Props extends CollectionEntry<"blog"> {
+  variant?: "h2" | "h3";
+}
+
+const { variant = "h2", data, id, filePath } = Astro.props;
+
+const { title, description, pubDatetime, modDatetime, timezone } = data;
+
+const headerProps = {
+  style: { viewTransitionName: slugifyStr(title) },
+  class: "text-lg font-medium decoration-dashed hover:underline",
+};
+
+const dateObj = new Date(pubDatetime);
+const minimalDate = dateObj.toISOString().slice(0, 10); // "2025-06-12"
+---
+<li class="my-0">
+  <a
+    href={getPath(id, filePath)}
+    class="flex flex-row justify-between items-center w-full text-lg font-medium"
+  >
+    <time datetime={dateObj.toISOString()} class="text-gray-600 dark:text-gray-400 font-mono">
+      {minimalDate}
+    </time>
+    {variant === "h2" ? (
+      <h2 {...headerProps} class="text-right">{title}</h2>
+    ) : (
+      <h3 {...headerProps} class="text-right">{title}</h3>
+    )}
+  </a>
+</li>
+
