@@ -69,19 +69,9 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 }
 
 </style>
-<div class="two-col">
-<div>      <i>Current positions:</i> 
-      <ul><li>Staff Scientist and Data Agent at Aalto University</li>
-      <li>SPE at European Data Protection Board</li> 
-      <li>Co-Founder at Finnish Reproducibility Network</li> 
-      <li>Workshop coordinator at CodeRefinery</li> 
-      <li>Lecturer at Tampere University</li></ul>
-</div>
-
-<div style=""><i>I usually write/teach/discuss about:</i><br> Research Ethics; Data Protection; Cybersecurity; Responsible AI; HPC; Neuroimaging; Statistics; Reproducibility; Open Science; Diversity and Inclusion</div></div></div>
 
       <p>
-        I use this site to gather and share my teaching materials, research articles, code snippets, thoughts, and ideas. All content is licensed under Creative Commons Attribution 4.0 (CC BY 4.0). Read the <a class="underline decoration-dashed underline-offset-4 hover:text-accent" href="/about">About</a> page for more info.
+        Here you find my teaching materials, research articles, code snippets, thoughts, and ideas. All content under <a class="underline decoration-dashed underline-offset-4 hover:text-accent" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 (CC BY 4.0)</a>. Read the <a class="underline decoration-dashed underline-offset-4 hover:text-accent" href="/about">About</a> page for more info.
       </p>
      
       {
@@ -100,8 +90,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     {
       recentPosts.length > 0 && (
         <section id="recent-posts" class="pt-8 pb-6">
-    <h1 class="text-2xl font-bold">6/10/2025: Journal posts and other materials are being added</h1>
-<br /><br />      
+    
     <h2 class="text-2xl font-semibold tracking-wide">Journal <a
         target="_blank"
         href="/rss.xml"
@@ -147,7 +136,27 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         <IconArrowRight class="inline-block rtl:-rotate-180" />
       </LinkButton>
     </div>
+
+<section>
+<div class="two-col">
+  <div> 
+    <i>Current positions:</i> 
+      <ul><li>Staff Scientist and Data Agent at Aalto University</li>
+      <li>SPE at European Data Protection Board</li> 
+      <li>Co-Founder at Finnish Reproducibility Network</li> 
+      <li>Workshop coordinator at CodeRefinery</li> 
+      <li>Lecturer at Tampere University</li></ul>
+  </div>
+  <div style="">
+  <i>I usually write/teach/discuss about:</i><br> Research Ethics; Data Protection; Cybersecurity; Responsible AI; HPC; Neuroimaging; Statistics; Reproducibility; Open Science; Diversity and Inclusion
+  </div>
+</div>
+</section>
+
   </main>
+
+
+
   <Footer />
 </Layout>
 

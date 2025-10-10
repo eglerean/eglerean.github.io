@@ -20,7 +20,7 @@ const headerProps = {
 const dateObj = new Date(pubDatetime);
 const minimalDate = dateObj.toISOString().slice(0, 10); // "2025-06-12"
 ---
-<li class="my-0">
+<li class="my-0 hover:text-accent hover:opacity-50">
   <a
     href={getPath(id, filePath)}
     class="flex flex-row justify-between items-center w-full text-base font-medium"
@@ -29,9 +29,9 @@ const minimalDate = dateObj.toISOString().slice(0, 10); // "2025-06-12"
       {minimalDate}
     </time>
     {variant === "h2" ? (
-      <h2 {...headerProps} class="self-start text-right text-base">{title}</h2>
+      <h2 {...headerProps} class="self-start text-right text-base overflow-wrap:anywhere">{title}</h2>
     ) : (
-      <h3 {...headerProps} class="self-start text-right text-base">{title}</h3>
+      <h3 {...headerProps} class="self-start text-right text-base overflow-wrap:anywhere">{title}</h3>
     )}
   </a>
 </li>
