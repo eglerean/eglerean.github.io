@@ -1,5 +1,5 @@
 ---
-title: "Talk ant Nordic Love Data Week (slides)"
+title: "Talk at Nordic Love Data Week (slides)"
 author: Enrico Glerean
 pubDatetime: 2026-02-11T00:00:00.0000
 slug: nordic-love-data-week-2026
