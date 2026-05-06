@@ -25,9 +25,3 @@ A recurring theme was that research support staff — data stewards, RDM special
 
 The slides are [available here (PDF)](../../assets/docs/2026_05_06_AI_research_risks.pdf).
 
-## Other keynotes and programme
-
-The morning keynotes also included:
-
-- **Jessica Parland-von Essen** (CSC) on integrating machine-actionable Data Management Plans with Dataset-as-a-Service approaches — a practical look at how DMPs can become living, interoperable documents rather than compliance checkboxes.
-- **Darren Bell** (UK Data Service) on implementing the Cross-Domain Interoperability Framework (CDIF) for FAIR data — with a focus on what cross-domain interoperability actually requires in practice.
